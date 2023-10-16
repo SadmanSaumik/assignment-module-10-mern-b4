@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const dataSchema = mongoose.Schema(
   {
-    email: { type: String },
+    email: { type: String, unique: true },
     firstName: { type: String },
     lastName: { type: String },
-    mobile: { type: String },
+    mobile: { type: String, unique: true },
     password: { type: String },
     address: { type: String },
     roll: { type: String },
