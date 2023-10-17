@@ -1,6 +1,7 @@
 const studentsModel = require("../models/studentsModel");
 const jwt = require("jsonwebtoken");
 
+//Student Registration (Create)
 exports.studentRegistration = async (req, res) => {
   let reqBody = req.body;
   console.log(req.body);
@@ -11,6 +12,8 @@ exports.studentRegistration = async (req, res) => {
     res.status(200).json({ status: "fail", data: e });
   }
 };
+
+//Student Login (Read)
 
 exports.studentLogin = async (req, res) => {
   try {
@@ -29,6 +32,18 @@ exports.studentLogin = async (req, res) => {
       // Login fail
       res.status(200).json({ status: "fail", data: "No User Found" });
     }
+  } catch (e) {
+    res.status(200).json({ status: "fail", data: e });
+  }
+};
+
+// Student Profile Details
+
+exports.profileDetails = async (req, res) => {
+  try {
+    let email = req.headers["email"];
+    let result = await studentsModel.find({ email: email });
+    res.status(200).json({ status: "success", data: result });
   } catch (e) {
     res.status(200).json({ status: "fail", data: e });
   }
