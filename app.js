@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const router = require("./src/routes/api");
+require("dotenv").config();
 
 // Security Middleware Lib Import
 const cors = require("cors");
@@ -25,20 +26,9 @@ app.use(express.urlencoded({ limit: "50mb", extended: false }));
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
-// Mongo DB Database Connection
-// let URI =
-//   "mongodb+srv://sadman:113nao0BjWyTH0lG@cluster0.ecyv4ix.mongodb.net/studentManage?retryWrites=true&w=majority";
-// let OPTION = { autoIndex: true };
-// mongoose
-//   .connect(URI, OPTION)
-//   .then(() => {
-//     console.log(`DB Connected`);
-//   })
-//   .catch((error) => console.log(error));
-
 mongoose
   .connect(
-    "mongodb+srv://sadman:113nao0BjWyTH0lG@cluster0.ecyv4ix.mongodb.net/studentManage?retryWrites=true&w=majority"
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ecyv4ix.mongodb.net/studentManage?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("DB Connected");
