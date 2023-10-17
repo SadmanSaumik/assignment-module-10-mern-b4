@@ -12,4 +12,9 @@ router.get(
   authVerifyMiddleware,
   studentsController.profileDetails
 );
+router.post(
+  "/profileupdate",
+  authVerifyMiddleware,
+  studentsController.profileUpdate
+);
 module.exports = router;

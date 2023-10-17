@@ -1,7 +1,7 @@
 const studentsModel = require("../models/studentsModel");
 const jwt = require("jsonwebtoken");
 
-//Student Registration (Create)
+//Student Registration
 exports.studentRegistration = async (req, res) => {
   let reqBody = req.body;
   console.log(req.body);
@@ -13,7 +13,7 @@ exports.studentRegistration = async (req, res) => {
   }
 };
 
-//Student Login (Read)
+//Student Login
 
 exports.studentLogin = async (req, res) => {
   try {
@@ -43,6 +43,26 @@ exports.profileDetails = async (req, res) => {
   try {
     let email = req.headers["email"];
     let result = await studentsModel.find({ email: email });
+    res.status(200).json({ status: "success", data: result });
+  } catch (e) {
+    res.status(200).json({ status: "fail", data: e });
+  }
+};
+
+// Student Profile Update
+
+exports.profileUpdate = async (res, req) => {
+  // let email = req.headers["email"];
+  // let reqBody = req.body;
+  // let result = await studentsModel.updateOne({ email: email }, reqBody);
+  // res.status(200).json({ status: "success", data: result });
+  // } catch (e) {
+  //   res.status(200).json({ status: "fail", data: e });
+  // }
+  try {
+    let email = req.headers["email"];
+    let reqBody = req.body;
+    let result = await studentsModel.updateOne({ email: email }, reqBody);
     res.status(200).json({ status: "success", data: result });
   } catch (e) {
     res.status(200).json({ status: "fail", data: e });
