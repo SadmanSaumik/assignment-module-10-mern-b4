@@ -51,14 +51,7 @@ exports.profileDetails = async (req, res) => {
 
 // Student Profile Update
 
-exports.profileUpdate = async (res, req) => {
-  // let email = req.headers["email"];
-  // let reqBody = req.body;
-  // let result = await studentsModel.updateOne({ email: email }, reqBody);
-  // res.status(200).json({ status: "success", data: result });
-  // } catch (e) {
-  //   res.status(200).json({ status: "fail", data: e });
-  // }
+exports.profileUpdate = async (req, res) => {
   try {
     let email = req.headers["email"];
     let reqBody = req.body;
