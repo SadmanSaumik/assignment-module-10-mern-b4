@@ -17,4 +17,13 @@ router.post(
   authVerifyMiddleware,
   studentsController.profileUpdate
 );
+
+router.get(
+  "/recoveryemailverify/:email",
+  studentsController.recoveryEmailVerify
+);
+
+router.post("/recoveryotpverify", studentsController.recoveryOtpVerify);
+router.post("/resetpassword", studentsController.resetPassword);
+
 module.exports = router;
