@@ -34,5 +34,15 @@ router.delete(
   authVerifyMiddleware,
   worksController.deleteWork
 );
-
+router.put("/updatetask/:id", authVerifyMiddleware, worksController.updateWork);
+router.get(
+  "/listtasksbystatus/:status",
+  authVerifyMiddleware,
+  worksController.listWorksByStatus
+);
+router.get(
+  "/taskstatuscount",
+  authVerifyMiddleware,
+  worksController.workStatusCount
+);
 module.exports = router;
